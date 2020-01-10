@@ -42,13 +42,13 @@ read -p 'allow password authentication, default[y] ? yes[y], no[n] : ' PASS_AUTH
 
 if [ $PASS_AUTH = y ]; then
     echo 'password authentication set to yes'
-    echo 'PasswordAuthenticaton yes'  >> /etc/ssh/sshd_config
+    echo 'PasswordAuthentication yes'  >> /etc/ssh/sshd_config
 elif [ $PASS_AUTH = n ]; then
     echo 'password authentication set to no'
-    echo 'PasswordAuthenticaton no'  >> /etc/ssh/sshd_config
+    echo 'PasswordAuthentication no'  >> /etc/ssh/sshd_config
 else
     echo 'password authentication set to default yes'
-    echo 'PasswordAuthenticaton yes'  >> /etc/ssh/sshd_config
+    echo 'PasswordAuthentication yes'  >> /etc/ssh/sshd_config
 fi
 
 echo 'restart and enable ssh server'
