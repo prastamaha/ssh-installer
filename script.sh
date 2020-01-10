@@ -51,6 +51,9 @@ else
     echo 'PasswordAuthenticaton yes '$PASS_AUTH  >> /etc/ssh/sshd_config
 fi
 
+echo 'restart and enable ssh server'
+systemctl restart ssh
+systemctl restart sshd
 
 echo '===================='
 echo 'SSH INSTALL FINISHED'
