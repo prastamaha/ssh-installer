@@ -42,23 +42,25 @@ read -p 'allow password authentication, default[y] ? yes[y], no[n] : ' PASS_AUTH
 
 if [ $PASS_AUTH = y ]; then
     echo 'password authentication set to yes'
-    echo 'PasswordAuthenticaton yes '$PASS_AUTH  >> /etc/ssh/sshd_config
+    echo 'PasswordAuthenticaton yes'  >> /etc/ssh/sshd_config
 elif [ $PASS_AUTH = n ]; then
     echo 'password authentication set to no'
-    echo 'PasswordAuthenticaton no '$PASS_AUTH  >> /etc/ssh/sshd_config
+    echo 'PasswordAuthenticaton no'  >> /etc/ssh/sshd_config
 else
     echo 'password authentication set to default yes'
-    echo 'PasswordAuthenticaton yes '$PASS_AUTH  >> /etc/ssh/sshd_config
+    echo 'PasswordAuthenticaton yes'  >> /etc/ssh/sshd_config
 fi
 
 echo 'restart and enable ssh server'
 systemctl restart ssh
 systemctl restart sshd
+systemctl enable ssh
+systemctl enable sshd
 
 echo '===================='
 echo 'SSH INSTALL FINISHED'
 echo '===================='
 
-IP_ADDR=ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'
+IP_ADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
 echo 'use this command to ssh to this server'
 echo 'ssh -l '$USER $IP_ADDR
