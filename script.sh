@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 echo 'this script mush be run with sudo or root user'
 
 # update package
@@ -51,6 +56,6 @@ echo '===================='
 echo 'SSH INSTALL FINISHED'
 echo '===================='
 
-IP_ADDR = ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'
+IP_ADDR=ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'
 echo 'use this command to ssh to this server'
 echo 'ssh -l '$USER $IP_ADDR
