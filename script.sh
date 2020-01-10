@@ -47,3 +47,10 @@ else
 fi
 
 
+echo '===================='
+echo 'SSH INSTALL FINISHED'
+echo '===================='
+
+IP_ADDR = ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'
+echo 'use this command to ssh to this server'
+echo 'ssh -l '$USER $IP_ADDR
